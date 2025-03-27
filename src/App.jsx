@@ -13,6 +13,14 @@ function App() {
   //select by genre const 
   const [selectGenre, setSelectGenre] = useState('');
   const [filteredMovies, setFilteredMovies] = useState(movies);
+  //filter movies
+  useEffect(() => {
+    setFilteredMovies(
+      movies.filter((movie) =>
+        movie.genre.toLowerCase().includes(selectGenre.toLowerCase())
+      )
+    );
+  }, [selectGenre]);
 
   return (
     <>
