@@ -10,7 +10,8 @@ function App() {
     { title: 'Interstellar', genre: 'Fantascienza' },
     { title: 'Pulp Fiction', genre: 'Thriller' },
   ]
-
+  // by genre
+  const [selectGenre, setSelectgenre] = useState('')
 
 
 
@@ -19,7 +20,15 @@ function App() {
     <>
       <h1>Movie Filter</h1>
 
+      <select name="movies" id="movies"
+        value={(selectGenre)} onChange={(e) => setSelectgenre(e.target.value)}>
 
+        <option value="">Select a genre</option>
+        <option value="Fantascienza">Fantascienza</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Romantico">Romantico</option>
+        <option value="Azione">Azione</option>
+      </select>
 
     </>
   )
