@@ -10,17 +10,31 @@ function App() {
     { title: 'Interstellar', genre: 'Fantascienza' },
     { title: 'Pulp Fiction', genre: 'Thriller' },
   ]
-  //select by genre const 
+  //select by title const 
   const [selectTitle, setSelectTitle] = useState('');
+  //select by genre const
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
-  //filter movies
+  //drowpdown filter by gerne
+  function GenreFilter({ selectedGenre, setSelectedGenre }) {
+    return (
+      <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+        <option value="">Select a genre</option>
+        <option value="Fantascienza">Fantascienza</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Romantico">Romantico</option>
+        <option value="Azione">Azione</option>
+      </select>
+    );
+  }
+  //filter movies by title
   useEffect(() => {
     setFilteredMovies(
       movies.filter((movie) =>
         movie.title.toLowerCase().includes(selectTitle.toLowerCase())
       )
     );
-  }, [selectTitle]);
+  }, [selectTitle, selectedGenre]);
 
   return (
     <>
@@ -30,7 +44,15 @@ function App() {
         placeholder="Enter a movie..."
         value={selectTitle}
         onChange={(e) => setSelectTitle(e.target.value)}
+
       />
+      <select onChange={(e) => setSelectGenre(e.target.value)}>
+        <option value="">All Genres</option>
+        <option value="Fantascienza">Fantascienza</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Romantico">Romantico</option>
+        <option value="Azione">Azione</option>
+      </select>
 
       <ul>
         {filteredMovies.map((movie) => (
