@@ -31,6 +31,11 @@ function App() {
         value={selectGenre}
         onChange={(e) => setSelectGenre(e.target.value)}
       />
+      <ul>
+        {filteredMovies.map((movie) => (
+          <li key={movie.title}>{movie.title} - {movie.genre}</li>
+        ))}
+      </ul>
     </>
   )
 }
